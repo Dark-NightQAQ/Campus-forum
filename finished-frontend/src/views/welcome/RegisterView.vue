@@ -40,9 +40,19 @@ const validateEmail = (rule, value, callback) => {
   }
 }
 
+const validateUsername = (rule, value, callback) => {
+  if (value === '') {
+    callback(new Error("用户名不能为空"))
+  } else if (!/^[a-zA-Z0-9\u4e00-\u9fa5]+$/.test(value)) {
+    callback(new Error("用户名不能包含特殊字符, 只能是中文/英文"))
+  } else {
+    callback()
+  }
+}
+
 const rules = reactive({
   email: [{required: true, validator: validateEmail, trigger: 'blur'}],
-  username: [{required: true, message: "用户名不能为空", trigger: 'blur'}],
+  username: [{required: true, validator: validateUsername, trigger: 'blur'}],
   password: [{required: true, message: "密码不能为空", trigger: 'blur'}, {min : 6, message: "密码长度不能小于6"}],
   repeat_password: [{required: true, validator: validatePass, trigger: 'blur'}],
   code: [{required: true, message: "验证码不能为空", trigger: 'blur'}]

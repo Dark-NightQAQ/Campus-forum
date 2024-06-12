@@ -53,6 +53,12 @@ const doGet = (url, header, success, failure = defaultFailure, error = defaultEr
     })
 }
 
+const get = (url, success, failure = defaultFailure) => {
+    doGet(url, {
+        "Authorization": `Bearer ${getToken()}`,
+    }, success)
+}
+
 const doPost = (url, data, header, success, failure = defaultFailure, error = defaultError) => {
     axios.post(defaultUrl + url, data, { headers: header}).then((res) => {
         if (res.data.code === 200) {
@@ -64,6 +70,12 @@ const doPost = (url, data, header, success, failure = defaultFailure, error = de
         console.log(err)
         error(err)
     })
+}
+
+const post = (url, data, success, failure = defaultFailure) => {
+    doPost(url, data, {
+        "Authorization": `Bearer ${getToken()}`,
+    }, success, failure)
 }
 
 const login = (username, password, remember) => {
@@ -96,4 +108,4 @@ const isLogin = () => {
     return getToken()
 }
 
-export {doGet, doPost, login, logout, askCodeForType, isLogin}
+export {doGet, doPost, login, logout, askCodeForType, isLogin, get, post}
