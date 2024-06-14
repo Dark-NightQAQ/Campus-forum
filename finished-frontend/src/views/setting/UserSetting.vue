@@ -3,9 +3,10 @@
 import Card from "@/components/Card.vue";
 import {Message, Notebook, Refresh, Select, User} from "@element-plus/icons-vue";
 import {useCounterStore} from "@/stores/counter.js";
-import {reactive, ref} from "vue";
-import {get, post} from "@/net/api.js";
+import {computed, reactive, ref} from "vue";
+import {get, getToken, post} from "@/net/api.js";
 import {ElMessage} from "element-plus";
+import axios from "axios";
 
 const store = useCounterStore()
 
@@ -44,9 +45,23 @@ const validateUsername = (rule, value, callback) => {
 }
 
 const rules = {
-  username: [{validator: validateUsername, trigger: ["blur", "change"]}, {min: 2, max: 30, message: "用户名的长度必须在2-30个字符之间", trigger: ["blur", "change"]}],
-  email: [{required: true, message: "邮件地址不能为空", trigger: ["blur", "change"]}, {type: "email", message: "请输入合法的电子的邮件地址", trigger: ["blur", "change"]}],
-  code: [{required: true, message: "验证码不能为空", trigger: ["blur", "change"]}, {min: 6, max: 6, message: "验证码至少六位", trigger: ["blur", "change"]}]
+  username: [{validator: validateUsername, trigger: ["blur", "change"]}, {
+    min: 2,
+    max: 30,
+    message: "用户名的长度必须在2-30个字符之间",
+    trigger: ["blur", "change"]
+  }],
+  email: [{required: true, message: "邮件地址不能为空", trigger: ["blur", "change"]}, {
+    type: "email",
+    message: "请输入合法的电子的邮件地址",
+    trigger: ["blur", "change"]
+  }],
+  code: [{required: true, message: "验证码不能为空", trigger: ["blur", "change"]}, {
+    min: 6,
+    max: 6,
+    message: "验证码至少六位",
+    trigger: ["blur", "change"]
+  }]
 }
 
 const saveDetails = () => {
@@ -85,7 +100,7 @@ function sendEmailCode() {
       ElMessage.success({message: `验证码已发送至${emailForm.email}, 请及时查看`, plain: true})
       const handle = setInterval(() => {
         codeTime.value--;
-        if(codeTime.value === 0) clearInterval(handle);
+        if (codeTime.value === 0) clearInterval(handle);
       }, 1000)
     }, (message) => {
       codeTime.value = 0;
@@ -107,15 +122,33 @@ const modifyEmail = () => {
     }
   })
 }
+
+function beforeAvatarUpload(rawFile) {
+  if (rawFile.type !== "image/jpeg" && rawFile.type !== 'image/png') {
+    ElMessage.warning({message: "图片只能是JPG/PNG格式", plain: true})
+  } else if (rawFile.size / 1024 > 1024) {
+    ElMessage.warning({message: "图片大小不能大于1M", plain: true})
+  }
+  return true;
+}
+
+function uploadSuccess(response) {
+  ElMessage.success({message: response.message, plain: true})
+  store.user.avatar = response.data;
+}
+const getAvatar = computed(() => {
+  return store.user.avatar.length > 0 ? `${axios.defaults.baseURL}/images${store.user.avatar}` : "https://www.vexipui.com/qmhc.jpg";
+});
 </script>
 
 <template>
-  <div style="display: flex;max-width: 960px;margin: auto" >
+  <div style="display: flex;max-width: 960px;margin: auto">
     <div class="setting-left">
       <card :icon="User" title="账号信息设置" desc="在这里编辑你的个人信息" v-loading="loading.form">
-        <el-form :model="baseForm" :rules="rules" label-position="top" ref="baseFormRef" style="margin: 0 10px 10px 10px">
+        <el-form :model="baseForm" :rules="rules" label-position="top" ref="baseFormRef"
+                 style="margin: 0 10px 10px 10px">
           <el-form-item label="用户名" prop="username">
-            <el-input v-model="baseForm.username" maxlength="30" />
+            <el-input v-model="baseForm.username" maxlength="30"/>
           </el-form-item>
           <el-form-item label="性别">
             <el-radio-group v-model="baseForm.gender">
@@ -133,13 +166,15 @@ const modifyEmail = () => {
             <el-input type="textarea" v-model="baseForm.desc" :rows="6" maxlength="200"/>
           </el-form-item>
           <el-form-item>
-            <el-button type="success" :icon="Select" :loading="loading.base" @click="saveDetails">保存用户信息</el-button>
+            <el-button type="success" :icon="Select" :loading="loading.base" @click="saveDetails">保存用户信息
+            </el-button>
           </el-form-item>
         </el-form>
       </card>
 
       <card style="margin-top: 10px" :icon="Message" title="电子邮件设置" desc="你可以在这里修改您的绑定的电子邮件">
-        <el-form :rules="rules" :model="emailForm" label-position="top" ref="emailFormRef" style="margin: 0 10px 10px 10px">
+        <el-form :rules="rules" :model="emailForm" label-position="top" ref="emailFormRef"
+                 style="margin: 0 10px 10px 10px">
           <el-form-item label="电子邮件" prop="email">
             <el-input v-model="emailForm.email"/>
           </el-form-item>
@@ -149,7 +184,9 @@ const modifyEmail = () => {
                 <el-input placeholder="请获取验证码" v-model="emailForm.code"/>
               </el-col>
               <el-col :span="6">
-                <el-button type="success" @click="sendEmailCode" :disabled="codeTime > 0" plain style="width: 100%">{{ codeTime > 0 ? `请稍后${codeTime}秒后重试` : "获取验证码" }}</el-button>
+                <el-button type="success" @click="sendEmailCode" :disabled="codeTime > 0" plain style="width: 100%">
+                  {{ codeTime > 0 ? `请稍后${codeTime}秒后重试` : "获取验证码" }}
+                </el-button>
               </el-col>
             </el-row>
           </el-form-item>
@@ -163,11 +200,21 @@ const modifyEmail = () => {
       <div style="position: sticky;top: 20px">
         <card>
           <div style="text-align: center;padding: 5px 15px 0 15px">
-            <el-avatar :size="70" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"/>
+            <el-avatar :size="70" :src="getAvatar"/>
+            <div style="margin: 5px 0">
+              <el-upload
+                  :action="axios.defaults.baseURL + '/api/image/avatar'"
+                  :show-file-list="false"
+                  :before-upload="beforeAvatarUpload"
+                  :on-success="uploadSuccess"
+                  :headers="{'Authorization': `Bearer ${getToken()}`}">
+                <el-button>修改头像</el-button>
+              </el-upload>
+            </div>
             <div style="font-weight: bold">
               你好, {{ store.user.username }}
             </div>
-            <el-divider style="margin: 10px 0" />
+            <el-divider style="margin: 10px 0"/>
             <div style="font-size: 14px;color: gray;padding: 3px">
               {{ desc || "这个用户很懒，没有填写个人简介~" }}
             </div>

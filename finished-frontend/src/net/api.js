@@ -108,4 +108,4 @@ const isLogin = () => {
     return getToken()
 }
 
-export {doGet, doPost, login, logout, askCodeForType, isLogin, get, post}
+export {doGet, doPost, login, logout, askCodeForType, isLogin, get, post, getToken}

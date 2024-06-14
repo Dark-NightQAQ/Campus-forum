@@ -1,7 +1,7 @@
 <script setup>
 import {get, logout} from "@/net/api.js";
 import {useCounterStore} from "@/stores/counter.js"
-import {reactive, ref} from "vue";
+import {computed, reactive, ref} from "vue";
 import BB from '@/assets/images/bilibili.png'
 import {
   Back,
@@ -15,6 +15,7 @@ import {
   Umbrella, User
 } from "@element-plus/icons-vue";
 import router from "@/router/index.js";
+import axios from "axios";
 
 const store = useCounterStore()
 const loading = ref(true);
@@ -28,6 +29,9 @@ get("/api/user/info", (data) => {
   store.user = data;
   loading.value = false;
 })
+const getAvatar = computed(() => {
+  return store.user.avatar.length > 0 ? `${axios.defaults.baseURL}/images${store.user.avatar}` : "https://www.vexipui.com/qmhc.jpg";
+});
 </script>
 
 <template>
@@ -56,9 +60,9 @@ get("/api/user/info", (data) => {
             <div>{{ store.user.email }}</div>
           </div>
           <el-dropdown>
-            <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"/>
+            <el-avatar :src="getAvatar"/>
             <template #dropdown>
-              <el-dropdown-item>
+              <el-dropdown-item @click="router.push('/index/user-setting')">
                 <el-icon><Operation/></el-icon>
                 个人设置
               </el-dropdown-item>

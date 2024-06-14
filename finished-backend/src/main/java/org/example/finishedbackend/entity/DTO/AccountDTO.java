@@ -17,6 +17,7 @@ public class AccountDTO {
     Integer id;
     String username;
     String password;
+    String avatar;
     String email;
     String role;
     @TableField("register_time")

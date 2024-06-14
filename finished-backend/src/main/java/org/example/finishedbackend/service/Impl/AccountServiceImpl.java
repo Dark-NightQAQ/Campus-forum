@@ -133,7 +133,7 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, AccountDTO> i
         if (existsAccountByEmail(email)) return "该邮箱已被注册";
         String username = vo.getUsername();
         if (existsAccountByUsername(username)) return "该用户名已被使用";
-        AccountDTO dto = new AccountDTO(0, vo.getUsername(), encoder.encode(vo.getPassword()), email, "user", new Date());
+        AccountDTO dto = new AccountDTO(0, vo.getUsername(), encoder.encode(vo.getPassword()), null, email, "user", new Date());
         if (this.baseMapper.insert(dto) > 0) {
             return null;
         } else {

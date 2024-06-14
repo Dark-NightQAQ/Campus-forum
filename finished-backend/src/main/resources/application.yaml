@@ -1,4 +1,8 @@
 spring:
+  minio:
+    endpoint: "http://localhost:9000"
+    username: "minioadmin"
+    password: "minioadmin"
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root

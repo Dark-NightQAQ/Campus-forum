@@ -3,7 +3,7 @@
 import Card from "@/components/Card.vue";
 import {Lock, Setting, Switch} from "@element-plus/icons-vue";
 import {reactive, ref} from "vue";
-import {post} from "@/net/api.js";
+import {get, post} from "@/net/api.js";
 import {ElMessage} from "element-plus";
 
 const form = reactive({
@@ -45,17 +45,44 @@ function resetPassword() {
     }
   })
 }
+
+const save = ref(true)
+const privacy = reactive({
+  phone: false,
+  qq: false,
+  email: false,
+  gender: false
+})
+
+get("/api/user/privacy", (data) => {
+  privacy.phone = data.phone;
+  privacy.qq = data.qq;
+  privacy.email = data.email;
+  privacy.gender = data.gender;
+  save.value = false;
+})
+
+function savePrivacy(type, status) {
+  save.value = true;
+  post("/api/user/save-privacy", {
+    type: type,
+    status: status
+  }, () => {
+    ElMessage.success({message: "修改成功", plain: true})
+    save.value = false;
+  })
+}
 </script>
 
 <template>
   <div style="margin: auto;max-width: 600px">
     <div style="margin-top: 20px">
-      <card :icon="Setting" title="隐私设置" desc="在这里设置自己个人信息的展示">
+      <card :icon="Setting" title="隐私设置" desc="在这里设置自己个人信息的展示" v-loading="save">
         <div class="checkbox-list" >
-          <el-checkbox>公开展示手机号</el-checkbox>
-          <el-checkbox>公开展示电子邮件</el-checkbox>
-          <el-checkbox>公开展示QQ号</el-checkbox>
-          <el-checkbox>公开展示性别</el-checkbox>
+          <el-checkbox v-model="privacy.phone" @change="savePrivacy('phone', privacy.phone)">公开展示手机号</el-checkbox>
+          <el-checkbox v-model="privacy.email" @change="savePrivacy('email', privacy.email)">公开展示电子邮件</el-checkbox>
+          <el-checkbox v-model="privacy.qq" @change="savePrivacy('qq', privacy.qq)">公开展示QQ号</el-checkbox>
+          <el-checkbox v-model="privacy.gender" @change="savePrivacy('gender', privacy.gender)">公开展示性别</el-checkbox>
         </div>
       </card>
       <card style="margin: 20px 0" :icon="Setting" title="修改密码" desc="在这里修改自己的密码">

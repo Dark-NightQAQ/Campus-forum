@@ -4,45 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9486f603-c05f-467a-a535-0a86d5d940c9" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9486f603-c05f-467a-a535-0a86d5d940c9" name="更改" comment="初始化">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Finished.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Finished.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/FinishedBackendApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/config/RabbitConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/config/SecurityConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/config/WebConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/controller/AuthorizeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/controller/Exception/ValidateException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/controller/TestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/entity/DTO/AccountDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/entity/RestBean.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/entity/VO/request/RegisterAccountByEmailVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/entity/VO/request/ResetAccountPasswordVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/entity/VO/response/AuthorizeVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/filter/AuthenticationFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/filter/FlowLimitFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/filter/WebCorsFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/listener/MailQueueListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/mapper/AccountMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/service/AccountService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/service/Impl/AccountServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/utils/Const.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/utils/FlowUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/java/org/example/finishedbackend/utils/JwtUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/main/resources/application.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinishedBackend/src/test/java/org/example/finishedbackend/FinishedBackendApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/DTO/AccountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/DTO/AccountDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/DTO/AccountDetailsDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/DTO/AccountDetailsDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/VO/response/AccountDetailsVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/VO/response/AccountDetailsVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/VO/response/AccountVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/VO/response/AccountVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/Impl/AccountDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/Impl/AccountDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/Impl/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/Impl/AccountServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finished-frontend/src/net/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/net/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finished-frontend/src/stores/counter.js" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/stores/counter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finished-frontend/src/views/IndexView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/views/IndexView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-frontend/src/views/welcome/RegisterView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/views/welcome/RegisterView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-frontend/src/views/setting/PrivacySetting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/views/setting/PrivacySetting.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-frontend/src/views/setting/UserSetting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/views/setting/UserSetting.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,42 +60,42 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.FinishedBackendApplicationTests.contextLoads.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.finished-backend [clean].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.FinishedBackendApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;20&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/IntelliJ IDEA/IDEA File/Finished/finished-frontend/src/assets/images&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reactor&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\IntelliJ IDEA\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.FinishedBackendApplicationTests.contextLoads.executor": "Run",
+    "Maven.finished-backend [clean].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.FinishedBackendApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "20",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/IntelliJ IDEA/IDEA File/Finished/finished-frontend/src/assets/images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "D:\\IntelliJ IDEA\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ],
-    &quot;vue.recent.templates&quot;: [
-      &quot;Vue Composition API Component&quot;
+    "vue.recent.templates": [
+      "Vue Composition API Component"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -223,12 +203,39 @@
       <workItem from="1718020762119" duration="7008000" />
       <workItem from="1718096539863" duration="4761000" />
       <workItem from="1718194774848" duration="4017000" />
-      <workItem from="1718200121169" duration="621000" />
+      <workItem from="1718200121169" duration="989000" />
+      <workItem from="1718260620568" duration="1350000" />
+      <workItem from="1718262008819" duration="768000" />
+      <workItem from="1718262790221" duration="5102000" />
+      <workItem from="1718278977934" duration="770000" />
+      <workItem from="1718329783979" duration="1985000" />
+      <workItem from="1718335959447" duration="4210000" />
     </task>
+    <task id="LOCAL-00001" summary="初始化">
+      <option name="closed" value="true" />
+      <created>1718201058091</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1718201058092</updated>
+    </task>
+    <task id="LOCAL-00002" summary="初始化">
+      <option name="closed" value="true" />
+      <created>1718201065336</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718201065336</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="初始化" />
+    <option name="LAST_COMMIT_MESSAGE" value="初始化" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -5,9 +5,9 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class AccountDetailsVO {
-    int gender;
-    String phone;
-    String qq;
-    String desc;
+public class AccountPrivacyVO {
+    boolean phone;
+    boolean email;
+    boolean qq;
+    boolean gender;
 }
