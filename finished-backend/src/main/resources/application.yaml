@@ -20,3 +20,5 @@ spring:
     username: admin
     password: admin
     virtual-host: /
+  weather:
+    key: ee2127f1d84a4ff7b6500c24c4cad6c0

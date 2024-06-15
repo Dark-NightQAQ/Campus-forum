@@ -8,8 +8,7 @@ import {
   Bell,
   ChatDotSquare, Collection, DataLine,
   Document, Files,
-  Location, Lock, Message, Monitor, Notebook,
-  Notification, Operation,
+  Location, Lock, Message, Monitor, Notification, Operation,
   Position,
   School, Search,
   Umbrella, User
@@ -38,7 +37,7 @@ const getAvatar = computed(() => {
   <div class="main-content" v-loading="loading" element-loading-text="正在加载信息, 请稍后...">
     <el-container style="height: 100%">
       <el-header class="main-content-header">
-        <el-image class="logo" :src="BB"></el-image>
+         <el-image class="logo" :src="BB"></el-image>
         <div style="flex: 1;padding: 0 20px;text-align: center">
           <el-input v-model="searchInput.text" style="width: 100%;max-width: 500px" placeholder="搜索论坛相关内容...">
             <template #prefix>
@@ -82,12 +81,12 @@ const getAvatar = computed(() => {
         <el-aside width="230px">
           <el-scrollbar style="height: calc(100vh - 55px)">
             <el-menu router style="min-height: calc(100vh - 55px)" :default-active="$route.path">
-              <el-sub-menu index="1">
+              <el-sub-menu index="1" >
                 <template #title>
                   <el-icon><Location/></el-icon>
                   <span><b>校园论坛</b></span>
                 </template>
-                <el-menu-item index="1-1">
+                <el-menu-item index="/index">
                   <template #title>
                     <el-icon><ChatDotSquare/></el-icon>
                     帖子广场

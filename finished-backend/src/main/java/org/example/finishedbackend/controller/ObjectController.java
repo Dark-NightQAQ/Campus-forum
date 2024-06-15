@@ -11,8 +11,6 @@ import org.example.finishedbackend.service.ImageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.io.IOException;
-
 @Controller
 @Slf4j
 public class ObjectController {
