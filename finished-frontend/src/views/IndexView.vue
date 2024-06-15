@@ -80,7 +80,7 @@ const getAvatar = computed(() => {
       <el-container>
         <el-aside width="230px">
           <el-scrollbar style="height: calc(100vh - 55px)">
-            <el-menu router style="min-height: calc(100vh - 55px)" :default-active="$route.path">
+            <el-menu router style="min-height: calc(100vh - 55px)" :default-active="$route.path" :default-openeds="['1', '2', '3']">
               <el-sub-menu index="1" >
                 <template #title>
                   <el-icon><Location/></el-icon>

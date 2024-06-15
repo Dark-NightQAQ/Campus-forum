@@ -148,7 +148,7 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, AccountDTO> i
 
     private boolean verifyLimit(String ip) {
         String key = Const.VERIFY_EMAIL_LIMIT + ip;
-        return flowUtils.check(key, 60);
+        return flowUtils.limitOnceCheck(key, 60);
     }
 
     private boolean existsAccountByEmail(String email) {

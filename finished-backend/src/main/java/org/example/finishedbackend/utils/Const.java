@@ -7,4 +7,5 @@ public class Const {
     public static final String VERIFY_EMAIL_CODE = "verify:email:code:";
     public static final String FLOW_LIMIT_COUNTER = "flow:limit:counter:";
     public static final String FLOW_LIMIT_BAN = "flow:limit:ban:";
+    public static final String FORUM_IMAGE_COUNTER = "forum:image:counter:";
 }

@@ -4,6 +4,7 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.example.finishedbackend.entity.VO.response.WeatherVO;
 import org.example.finishedbackend.service.WeatherService;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.zip.GZIPInputStream;
 
 @Service
+@Slf4j
 public class WeatherServiceImpl implements WeatherService {
 
     @Resource
@@ -41,7 +43,13 @@ public class WeatherServiceImpl implements WeatherService {
         Integer id = location.getInteger("id");
         String key = "weather:"+id;
         String cache = template.opsForValue().get(key);
-        if (cache != null) return JSONObject.parseObject(cache).to(WeatherVO.class);
+        try {
+            if (cache != null)
+                return JSONObject.parseObject(cache).to(WeatherVO.class);
+        } catch (ClassCastException e) {
+            log.error("从缓存获取数据类型转换失败 {} 已执行正常从api调用接口数据",e.getMessage());
+            return fetchFromAPI(id, location);
+        }
         WeatherVO vo = fetchFromAPI(id, location);
         if (vo == null) return null;
         template.opsForValue().set(key, JSONObject.from(vo).toJSONString(), 1, TimeUnit.HOURS);
