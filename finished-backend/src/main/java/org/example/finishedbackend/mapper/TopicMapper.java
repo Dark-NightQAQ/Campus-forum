@@ -10,17 +10,16 @@ import java.util.List;
 
 @Mapper
 public interface TopicMapper extends BaseMapper<TopicDTO> {
-    @Result(column = "type", property = "type", javaType = Integer.class)
-    @Select("""
-            select * from db_topic left join db_account on uid = db_account.id
-            order by `time` desc limit #{start}, 5
-             """)
-    List<TopicDTO> topicList(int start);
-
-    @Select("""
-            select * from db_topic left join db_account on uid = db_account.id
-            where type = #{type}
-            order by `time` desc limit #{start}, 5
-             """)
-    List<TopicDTO> topicListByType(int start, int type);
+//    @Select("""
+//            select * from db_topic left join db_account on uid = db_account.id
+//            order by `time` desc limit #{start}, 5
+//             """)
+//    List<TopicDTO> topicList(int start);
+//
+//    @Select("""
+//            select * from db_topic left join db_account on uid = db_account.id
+//            where type = #{type}
+//            order by `time` desc limit #{start}, 5
+//             """)
+//    List<TopicDTO> topicListByType(int start, int type);
 }

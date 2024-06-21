@@ -8,10 +8,7 @@ import jakarta.validation.constraints.Min;
 import org.example.finishedbackend.entity.DTO.TopicDTO;
 import org.example.finishedbackend.entity.RestBean;
 import org.example.finishedbackend.entity.VO.request.TopicCreateVO;
-import org.example.finishedbackend.entity.VO.response.TopicPreviewVO;
-import org.example.finishedbackend.entity.VO.response.TopicTopVO;
-import org.example.finishedbackend.entity.VO.response.TopicTypeVO;
-import org.example.finishedbackend.entity.VO.response.WeatherVO;
+import org.example.finishedbackend.entity.VO.response.*;
 import org.example.finishedbackend.service.TopicService;
 import org.example.finishedbackend.service.WeatherService;
 import org.springframework.stereotype.Controller;
@@ -51,11 +48,16 @@ public class ForumController {
     public RestBean<List<TopicPreviewVO>> listTopic(@RequestParam @Min(0) int page,
                                                     @RequestParam @Min(0) int type) {
         List<TopicPreviewVO> voList = topic.listTopicByPage(page, type);
-        return voList != null ? RestBean.success(voList, "帖子获取成功") : RestBean.failure(400, "已经到头了~");
+        return voList != null ? RestBean.success(voList, null) : RestBean.failure(400, "已经到头了~");
     }
 
     @GetMapping("/top-topic")
     public RestBean<List<TopicTopVO>> topTopic() {
-        return RestBean.success(topic.listTopTopics(), "推荐帖子获取成功");
+        return RestBean.success(topic.listTopTopics(), null);
+    }
+
+    @GetMapping("/topic")
+    public RestBean<TopicDetailVO> topic(@RequestParam @Min(0) int tid) {
+        return RestBean.success(topic.getTopic(tid), null);
     }
 }

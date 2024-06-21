@@ -21,6 +21,7 @@ import TopicEditor from "@/components/TopicEditor.vue";
 import {useCounterStore} from "@/stores/counter.js";
 import axios from "axios";
 import ColorDot from "@/components/ColorDot.vue";
+import router from "@/router/index.js";
 
 const store = useCounterStore();
 
@@ -99,7 +100,7 @@ navigator.geolocation.getCurrentPosition((position) => {
     weather.success = true;
   })
 }, {
-  timeout: 5000,
+  timeout: 10000,
   enableHighAccuracy: true
 })
 </script>
@@ -125,7 +126,7 @@ navigator.geolocation.getCurrentPosition((position) => {
           <div>{{new Date(item.time).toLocaleString()}}</div>
         </div>
       </light-card>
-      <light-card style="margin-top: 10px;display: flex;gap: 7px">
+      <light-card style="margin-top: 10px;display: flex;gap: 7px;flex-wrap: wrap">
         <div :class="`type-select-card ${topics.type === item.id ? 'active' : ''}`" v-for="item in store.forum.types" @click="topics.type = item.id;">
           <color-dot :color="item.color" />
           <span style="margin-left: 5px">{{item.name}}</span>
@@ -134,7 +135,7 @@ navigator.geolocation.getCurrentPosition((position) => {
       <transition name="el-fade-in" mode="out-in">
         <div v-if="topics.list.length">
           <div style="margin-top: 10px;display: flex;flex-direction: column;gap: 10px" v-infinite-scroll="updateList">
-            <light-card v-for="item in topics.list" class="topic-card">
+            <light-card v-for="item in topics.list" class="topic-card" @click="router.push('/index/topic-detail/'+item.id)">
               <div style="display: flex">
                 <div>
                   <el-avatar :size="30" :src="`${axios.defaults.baseURL}/images${item.avatar}`" />

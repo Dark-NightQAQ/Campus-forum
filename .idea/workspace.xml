@@ -4,24 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9486f603-c05f-467a-a535-0a86d5d940c9" name="更改" comment="实现帖子图片存入缓存">
-      <change afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/VO/response/TopicPreviewVO.java" afterDir="false" />
+    <list default="true" id="9486f603-c05f-467a-a535-0a86d5d940c9" name="更改" comment="实现论坛首页帖子预览界面">
+      <change afterPath="$PROJECT_DIR$/finished-frontend/src/views/forum/TopicDetail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/config/WebConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/config/WebConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/controller/ForumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/controller/ForumController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/DTO/AccountPrivacyDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/DTO/AccountPrivacyDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/DTO/TopicDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/DTO/TopicDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/DTO/TopicTypeDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/DTO/TopicTypeDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/VO/response/TopicTypeVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/VO/response/TopicTypeVO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/mapper/TopicMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/mapper/TopicMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/Impl/ImageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/Impl/ImageServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/Impl/TopicServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/Impl/TopicServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/Impl/WeatherServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/Impl/WeatherServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/TopicService.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/TopicService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/utils/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/utils/Const.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-frontend/src/components/TopicEditor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/components/TopicEditor.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-frontend/src/net/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/net/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-frontend/src/stores/counter.js" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/stores/counter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finished-frontend/src/views/forum/TopicList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/views/forum/TopicList.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,8 +28,8 @@
         <option value="Record" />
         <option value="JavaScript File" />
         <option value="Interface" />
-        <option value="Vue Composition API Component" />
         <option value="Class" />
+        <option value="Vue Composition API Component" />
       </list>
     </option>
   </component>
@@ -220,7 +213,8 @@
       <workItem from="1718816954023" duration="621000" />
       <workItem from="1718817929154" duration="2566000" />
       <workItem from="1718847832887" duration="10884000" />
-      <workItem from="1718955434396" duration="4490000" />
+      <workItem from="1718955434396" duration="6096000" />
+      <workItem from="1718969820686" duration="5003000" />
     </task>
     <task id="LOCAL-00001" summary="初始化">
       <option name="closed" value="true" />
@@ -286,7 +280,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718445502225</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="实现论坛首页帖子预览界面">
+      <option name="closed" value="true" />
+      <created>1718960439228</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1718960439228</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,7 +310,8 @@
     <MESSAGE value="头像上传功能实现" />
     <MESSAGE value="未来五小时天气预测实现" />
     <MESSAGE value="实现帖子图片存入缓存" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现帖子图片存入缓存" />
+    <MESSAGE value="实现论坛首页帖子预览界面" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现论坛首页帖子预览界面" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
