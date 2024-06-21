@@ -7,11 +7,11 @@ const defaultUrl = "http://localhost:8080"
 const tokenAndExpire = "tokenAndExpire"
 
 const defaultFailure = (message, code, url) => {
-    ElMessage.warning(message);
+    ElMessage.warning({message:message, plain:true});
 }
 
 const defaultError = (message) => {
-    ElMessage.error(message)
+    ElMessage.error({message:message, plain:true})
 }
 
 const getToken = () => {
@@ -20,7 +20,7 @@ const getToken = () => {
     const tokenObj = JSON.parse(token);
     if (tokenObj.expire < new Date()) {
         deleteToken();
-        ElMessage.warning("登录状态过期, 请重新登录");
+        ElMessage.warning({message:"登录状态过期, 请重新登录", plain:true});
         return null;
     }
     return tokenObj.token;
@@ -86,7 +86,7 @@ const login = (username, password, remember) => {
         "Content-Type" : "application/x-www-form-urlencoded"
     }, (data) => {
         storeToken(data.token, remember, data.expireTime);
-        ElMessage.success(`欢迎用户${data.username}登录成功`)
+        ElMessage.success({message: `欢迎用户${data.username}登录成功`, plain: true})
         router.push("/index")
     })
 }

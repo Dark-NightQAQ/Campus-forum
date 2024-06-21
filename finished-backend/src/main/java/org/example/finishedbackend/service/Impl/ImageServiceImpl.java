@@ -69,7 +69,7 @@ public class ImageServiceImpl extends ServiceImpl<ImageStoreMapper, StoreImageDT
             return null;
         String imageName = UUID.randomUUID().toString().replace("_", "");
         Date date = new Date();
-        imageName = "/cache/" + format.format(date) + "/" + imageName;
+        imageName = "/cache/" + format.format(date) + "/" + imageName + ".jpg";
         PutObjectArgs args = PutObjectArgs.builder()
                 .bucket("forum")
                 .stream(file.getInputStream(), file.getSize(), -1)

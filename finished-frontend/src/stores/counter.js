@@ -9,6 +9,16 @@ export const useCounterStore = defineStore('counter', () => {
     avatar: "",
     registerTime: null,
   })
+  const forum = reactive({
+    types: []
+  })
+  function findTypeById(id) {
+    for (let type of forum.types) {
+      if (type.id === id)  {
+        return type
+      }
+    }
+  }
 
-  return { user }
+  return { user, forum, findTypeById }
 })

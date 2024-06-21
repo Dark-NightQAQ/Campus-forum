@@ -43,12 +43,9 @@ public class WeatherServiceImpl implements WeatherService {
         Integer id = location.getInteger("id");
         String key = "weather:"+id;
         String cache = template.opsForValue().get(key);
-        try {
-            if (cache != null)
-                return JSONObject.parseObject(cache).to(WeatherVO.class);
-        } catch (ClassCastException e) {
-            log.error("从缓存获取数据类型转换失败 {} 已执行正常从api调用接口数据",e.getMessage());
-            return fetchFromAPI(id, location);
+        if (cache != null) {
+            JSONObject jsonObject = JSONObject.parseObject(cache);
+            return new WeatherVO(jsonObject.getJSONObject("location"), jsonObject.getJSONObject("now"), jsonObject.getJSONArray("hourly"));
         }
         WeatherVO vo = fetchFromAPI(id, location);
         if (vo == null) return null;
