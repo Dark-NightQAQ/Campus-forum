@@ -37,7 +37,7 @@ public class AccountController {
     @GetMapping("/info")
     public RestBean<AccountVO> info(@RequestAttribute("id") int id) {
         AccountDTO dto = accountService.findAccountById(id);
-        AccountVO vo = new AccountVO(dto.getUsername(), dto.getEmail(), dto.getRole(), dto.getAvatar(), dto.getCreate_time());
+        AccountVO vo = new AccountVO(dto.getId(), dto.getUsername(), dto.getEmail(), dto.getRole(), dto.getAvatar(), dto.getCreate_time());
         return RestBean.success(vo, "account info get success");
     }
 

@@ -1,7 +1,7 @@
 <script setup>
 import {Check, Document} from "@element-plus/icons-vue";
 import {computed, reactive, ref} from "vue";
-import {Quill, QuillEditor} from "@vueup/vue-quill";
+import {Delta, Quill, QuillEditor} from "@vueup/vue-quill";
 import ImageResize from "quill-image-resize-vue";
 import { ImageExtend, QuillWatch } from "quill-image-super-solution-module";
 import "@vueup/vue-quill/dist/vue-quill.snow.css"
@@ -11,8 +11,28 @@ import {get, getToken, post} from "@/net/api.js";
 import ColorDot from "@/components/ColorDot.vue";
 import {useCounterStore} from "@/stores/counter.js";
 
-defineProps({
-  show: Boolean
+const props = defineProps({
+  tid: {
+    default: "-1",
+    type: String
+  },
+  show: Boolean,
+  defaultTitle: {
+    default: '',
+    type: String
+  },
+  defaultText: {
+    default: '',
+    type: String
+  },
+  defaultType: {
+    default: null,
+    type: Number
+  },
+  submitButton: {
+    default: '立即发布',
+    type: String
+  },
 })
 
 const store = useCounterStore();
@@ -107,22 +127,38 @@ const submitTopic = () => {
     ElMessage.warning({message:"请选择一个合适的文章类型!", plain:true})
     return;
   }
-  post("/api/forum/create-topic", {
-    type: editor.type.id,
-    title: editor.title,
-    content: editor.text
-  }, () => {
-    ElMessage.success({message:"文章发表成功", plain:true})
-    emit('success')
-  })
+  if (props.tid === "-1") {
+    post("/api/forum/create-topic", {
+      type: editor.type.id,
+      title: editor.title,
+      content: editor.text
+    }, () => {
+      ElMessage.success({message:"文章发表成功", plain:true})
+      emit('success')
+    })
+  } else {
+    post("/api/forum/update-topic", {
+      id: parseInt(props.tid),
+      type: editor.type.id,
+      title: editor.title,
+      content: editor.text
+    }, () => {
+      ElMessage.success({message:"文章更新成功", plain:true})
+      emit('success')
+    })
+  }
 }
 
 const refEditor = ref();
 
 function initEditor() {
-  refEditor.value.setContents('', 'user')
-  editor.title = "";
-  editor.type = null
+  if (props.defaultText)
+    editor.text = new Delta(JSON.parse(props.defaultText))
+  else
+    refEditor.value.setContents('', 'user')
+
+  editor.title = props.defaultTitle
+  editor.type = store.forum.types[props.defaultType]
 }
 </script>
 
@@ -169,7 +205,7 @@ function initEditor() {
       <div style="display: flex;justify-content: space-between;margin-top: 10px">
         <div style="color: grey;font-size: 13px">当前字数 {{ contentLength.length }} 最大支持(20000字) 注:上传图片时, 请手动拖拽设置图片大小, 最大不要超过600px宽度</div>
         <div>
-          <el-button type="success" :icon="Check" plain @click="submitTopic">立即发布</el-button>
+          <el-button type="success" :icon="Check" plain @click="submitTopic">{{ submitButton }}</el-button>
         </div>
       </div>
     </el-drawer>

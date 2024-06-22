@@ -10,6 +10,7 @@ import org.example.finishedbackend.entity.DTO.Interact;
 import org.example.finishedbackend.entity.DTO.TopicDTO;
 import org.example.finishedbackend.entity.RestBean;
 import org.example.finishedbackend.entity.VO.request.TopicCreateVO;
+import org.example.finishedbackend.entity.VO.request.TopicUpdateVO;
 import org.example.finishedbackend.entity.VO.response.*;
 import org.example.finishedbackend.service.TopicService;
 import org.example.finishedbackend.service.WeatherService;
@@ -60,8 +61,9 @@ public class ForumController {
     }
 
     @GetMapping("/topic")
-    public RestBean<TopicDetailVO> topic(@RequestParam @Min(0) int tid) {
-        return RestBean.success(topic.getTopic(tid), null);
+    public RestBean<TopicDetailVO> topic(@RequestParam @Min(0) int tid,
+                                         @RequestAttribute("id") int id) {
+        return RestBean.success(topic.getTopic(tid, id), null);
     }
 
     @GetMapping("/interact")
@@ -76,5 +78,12 @@ public class ForumController {
     @GetMapping("/collects")
     public RestBean<List<TopicPreviewVO>> collect(@RequestAttribute("id") int id) {
         return RestBean.success(topic.listTopicCollects(id),null);
+    }
+
+    @PostMapping("/update-topic")
+    public RestBean<Void> updateTopic(@RequestAttribute("id") int id,
+                                      @RequestBody @Valid TopicUpdateVO vo) {
+        String s = topic.updateTopic(id, vo);
+        return s == null ? RestBean.success("帖子更新成功") : RestBean.failure(400, s);
     }
 }

@@ -9,6 +9,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import org.example.finishedbackend.entity.DTO.*;
 import org.example.finishedbackend.entity.VO.request.TopicCreateVO;
+import org.example.finishedbackend.entity.VO.request.TopicUpdateVO;
 import org.example.finishedbackend.entity.VO.response.TopicDetailVO;
 import org.example.finishedbackend.entity.VO.response.TopicPreviewVO;
 import org.example.finishedbackend.entity.VO.response.TopicTopVO;
@@ -80,6 +81,20 @@ public class TopicServiceImpl extends ServiceImpl<TopicMapper, TopicDTO> impleme
     }
 
     @Override
+    public String updateTopic(int uid, TopicUpdateVO vo) {
+        if (vo.getContent() == null) return "文章内容不能为空";
+        if (!textLimitCheck(vo.getContent())) return "文章字数过多, 请稍后再试";
+        if (!types.contains(vo.getType())) return "文章类型非法！";
+        baseMapper.update(null, Wrappers.<TopicDTO>update()
+                .eq("uid", uid)
+                .eq("id", vo.getId())
+                .set("title", vo.getTitle())
+                .set("content", vo.getContent().toString())
+                .set("type", vo.getType()));
+        return null;
+    }
+
+    @Override
     public List<TopicPreviewVO> listTopicByPage(int pageNumber, int type) {
         String key = Const.FORUM_TOPIC_PREVIEW_CACHE + pageNumber + ":" + type;
         List<TopicPreviewVO> voList = cacheUtils.getListFromCache(key, TopicPreviewVO.class);
@@ -106,6 +121,7 @@ public class TopicServiceImpl extends ServiceImpl<TopicMapper, TopicDTO> impleme
         }).toList();
     }
 
+
     @Override
     public List<TopicTopVO> listTopTopics() {
         List<TopicDTO> topics = baseMapper.selectList(Wrappers.<TopicDTO>query()
@@ -115,14 +131,14 @@ public class TopicServiceImpl extends ServiceImpl<TopicMapper, TopicDTO> impleme
     }
 
     @Override
-    public TopicDetailVO getTopic(int tid) {
+    public TopicDetailVO getTopic(int tid, int uid) {
         TopicDetailVO vo = new TopicDetailVO();
         TopicDTO dto = baseMapper.selectById(tid);
         BeanUtils.copyProperties(dto, vo);
         TopicDetailVO.User user = new TopicDetailVO.User();
         TopicDetailVO.Interact interact = new TopicDetailVO.Interact(
-                hasInteract(tid, dto.getUid(), "like"),
-                hasInteract(tid, dto.getUid(), "collect"));
+                hasInteract(tid, uid, "like"),
+                hasInteract(tid, uid, "collect"));
         vo.setInteract(interact);
         vo.setUser(this.fillUserDetailsByPrivacy(user, dto.getUid()));
         return vo;

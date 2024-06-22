@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 
 export const useCounterStore = defineStore('counter', () => {
   const user = reactive({
+    id: -1,
     username: "",
     email: "",
     role: "",

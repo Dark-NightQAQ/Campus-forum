@@ -4,17 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9486f603-c05f-467a-a535-0a86d5d940c9" name="更改" comment="帖子前端详细界面展示完成">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="9486f603-c05f-467a-a535-0a86d5d940c9" name="更改" comment="帖子点赞功能前后端实现">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/controller/AccountController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/controller/ForumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/controller/ForumController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/VO/response/TopicDetailVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/VO/response/TopicDetailVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/VO/response/TopicPreviewVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/VO/response/TopicPreviewVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/mapper/TopicMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/mapper/TopicMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/VO/response/AccountVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/VO/response/AccountVO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/Impl/TopicServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/Impl/TopicServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/TopicService.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/TopicService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-frontend/src/components/TopicEditor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/components/TopicEditor.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-frontend/src/stores/counter.js" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/stores/counter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finished-frontend/src/views/forum/TopicDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/views/forum/TopicDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-frontend/src/views/forum/TopicList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/views/forum/TopicList.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +27,8 @@
         <option value="Record" />
         <option value="JavaScript File" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Vue Composition API Component" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -215,7 +215,7 @@
       <workItem from="1718955434396" duration="6096000" />
       <workItem from="1718969820686" duration="6351000" />
       <workItem from="1719047738656" duration="6744000" />
-      <workItem from="1719054572987" duration="10230000" />
+      <workItem from="1719054572987" duration="14997000" />
     </task>
     <task id="LOCAL-00001" summary="初始化">
       <option name="closed" value="true" />
@@ -305,7 +305,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719054584452</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="帖子点赞功能前后端实现">
+      <option name="closed" value="true" />
+      <created>1719067065795</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1719067065795</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,7 +338,8 @@
     <MESSAGE value="实现论坛首页帖子预览界面" />
     <MESSAGE value="帖子详细界面后端实现" />
     <MESSAGE value="帖子前端详细界面展示完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="帖子前端详细界面展示完成" />
+    <MESSAGE value="帖子点赞功能前后端实现" />
+    <option name="LAST_COMMIT_MESSAGE" value="帖子点赞功能前后端实现" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,17 +1,21 @@
 <script setup>
-import {get} from "@/net/api.js";
+import {get, post} from "@/net/api.js";
 import {useRoute} from "vue-router";
 import axios from "axios";
-import {computed, reactive} from "vue";
-import {ArrowLeft, Female, Hide, Male, Pointer, Star, StarFilled} from "@element-plus/icons-vue";
+import {computed, reactive, ref} from "vue";
+import {ArrowLeft, EditPen, Female, Hide, Male, Pointer, Star, Link} from "@element-plus/icons-vue";
 import {QuillDeltaToHtmlConverter} from 'quill-delta-to-html';
 import Card from "@/components/Card.vue";
 import router from "@/router/index.js";
 import TopicTag from "@/components/TopicTag.vue";
 import InteractButton from "@/components/InteractButton.vue";
 import {ElMessage} from "element-plus";
+import {useCounterStore} from "@/stores/counter.js";
+import TopicEditor from "@/components/TopicEditor.vue";
 
 const route = useRoute();
+
+const store = useCounterStore()
 
 const topic = reactive({
   data: null,
@@ -21,17 +25,22 @@ const topic = reactive({
 })
 
 const tid = route.params.tid;
-get(`/api/forum/topic?tid=${tid}`, data => {
-  topic.data = data;
-  topic.like = data.interact.like;
-  topic.collect = data.interact.collect;
-})
+function init() {
+  get(`/api/forum/topic?tid=${tid}`, data => {
+    topic.data = data;
+    topic.like = data.interact.like;
+    topic.collect = data.interact.collect;
+  })
+}
+init()
 
 const content = computed(() => {
   const ops = JSON.parse(topic.data.content).ops;
   const converter = new QuillDeltaToHtmlConverter(ops, {inlineStyles: true});
   return converter.convert()
 })
+
+const edit = ref(false)
 
 function interact(type, message) {
   get(`/api/forum/interact?tid=${tid}&type=${type}&state=${!topic[type]}`, () => {
@@ -42,6 +51,23 @@ function interact(type, message) {
       ElMessage.success({message: `取消${message}操作成功`, plain: true})
     }
   })
+}
+
+function updateTopic(editor) {
+  post("/api/forum/update-topic", {
+    id: tid,
+    type: editor.type.id,
+    title: editor.title,
+    content: editor.text
+  }, () => {
+    ElMessage.success({message:"帖子内容更新成功", plain:true})
+    edit.value = false;
+  })
+}
+
+async function copyUrl() {
+  await navigator.clipboard.writeText(window.location.href);
+  ElMessage.success({message: "已复制到粘贴板", plain: true})
 }
 </script>
 
@@ -95,11 +121,17 @@ function interact(type, message) {
           <div>发帖时间：{{new Date(topic.data.time).toLocaleString()}}</div>
         </div>
         <div style="text-align: right;margin-top: 30px">
-          <interact-button name="点个赞吧" color="pink" check-name="已点赞" :check="topic.like" @check="interact('like', '点赞')">
+          <interact-button name="编辑" color="dodgerblue" :check="false" @check="edit = true" v-if="store.user.id === topic.data.user.id">
+            <el-icon><EditPen/></el-icon>
+          </interact-button>
+          <interact-button style="margin-left: 20px" name="点个赞吧" color="pink" check-name="已点赞" :check="topic.like" @check="interact('like', '点赞')">
             <el-icon><Pointer/></el-icon>
           </interact-button>
           <interact-button name="收藏本帖" style="margin-left: 20px" :check="topic.collect" color="orange" check-name="已收藏" @check="interact('collect', '收藏')">
             <el-icon><Star/></el-icon>
+          </interact-button>
+          <interact-button name="分享本帖" style="margin-left: 20px" :check="false" color="grey" @check="copyUrl()">
+            <el-icon><Link/></el-icon>
           </interact-button>
         </div>
       </div>
@@ -107,6 +139,16 @@ function interact(type, message) {
     <div>
 
     </div>
+    <topic-editor
+        :show="edit"
+        submit-button="更新帖子内容"
+        :default-text="topic.data.content"
+        :default-title="topic.data.title"
+        :default-type="topic.data.type"
+        @close="edit = false;init()"
+        :submit="updateTopic"
+        :tid="tid"
+        v-if="topic.data"/>
   </div>
 </template>
 
@@ -141,11 +183,15 @@ function interact(type, message) {
   .topic-main-right {
     padding: 20px;
     width: 600px;
+    display: flex;
+    flex-direction: column;
+
 
     .topic-content {
       font-size: 14px;
       opacity: 0.9;
       line-height: 22px;
+      flex: 1;
     }
   }
 }

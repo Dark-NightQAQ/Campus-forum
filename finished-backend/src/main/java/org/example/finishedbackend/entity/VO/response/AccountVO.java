@@ -10,6 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountVO {
+    Integer id;
     private String username;
     private String email;
     private String role;
