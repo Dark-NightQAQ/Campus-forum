@@ -50,7 +50,7 @@ public class FlowLimitFilter extends HttpFilter {
     private boolean limitPeriodCheck(String ip) {
         if (Boolean.TRUE.equals(template.hasKey(Const.FLOW_LIMIT_COUNTER + ip))) {
             Long increment = Optional.ofNullable(template.opsForValue().increment(Const.FLOW_LIMIT_COUNTER + ip)).orElse(0L);
-            if (increment > 20) {
+            if (increment > 30) {
                 template.opsForValue().set(Const.FLOW_LIMIT_BAN + ip, "", 30, TimeUnit.SECONDS);
                 log.info("{}地址也许正在压测网站, 请注意!", ip);
                 return false;

@@ -147,7 +147,7 @@ function initEditor() {
           </el-select>
         </div>
         <div style="flex: 1">
-          <el-input placeholder="请输入文章标题" :prefix-icon="Document" v-model="editor.title" maxlength="50" />
+          <el-input placeholder="请输入文章标题" :prefix-icon="Document" v-model="editor.title" maxlength="38" />
         </div>
       </div>
       <div style="margin-top: 10px;font-size: 13px;color: grey">
@@ -167,7 +167,7 @@ function initEditor() {
         />
       </div>
       <div style="display: flex;justify-content: space-between;margin-top: 10px">
-        <div style="color: grey;font-size: 13px">当前字数 {{ contentLength.length }} 最大支持(20000字)</div>
+        <div style="color: grey;font-size: 13px">当前字数 {{ contentLength.length }} 最大支持(20000字) 注:上传图片时, 请手动拖拽设置图片大小, 最大不要超过600px宽度</div>
         <div>
           <el-button type="success" :icon="Check" plain @click="submitTopic">立即发布</el-button>
         </div>

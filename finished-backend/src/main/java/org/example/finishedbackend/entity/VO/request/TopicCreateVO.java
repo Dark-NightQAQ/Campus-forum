@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.Length;
 public class TopicCreateVO {
     @Min(0)
     int type;
-    @Length(min = 1, max = 50)
+    @Length(min = 1, max = 38)
     String title;
     JSONObject content;
 
