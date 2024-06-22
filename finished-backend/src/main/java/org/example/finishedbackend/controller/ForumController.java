@@ -5,6 +5,8 @@ import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Pattern;
+import org.example.finishedbackend.entity.DTO.Interact;
 import org.example.finishedbackend.entity.DTO.TopicDTO;
 import org.example.finishedbackend.entity.RestBean;
 import org.example.finishedbackend.entity.VO.request.TopicCreateVO;
@@ -14,6 +16,7 @@ import org.example.finishedbackend.service.WeatherService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -59,5 +62,19 @@ public class ForumController {
     @GetMapping("/topic")
     public RestBean<TopicDetailVO> topic(@RequestParam @Min(0) int tid) {
         return RestBean.success(topic.getTopic(tid), null);
+    }
+
+    @GetMapping("/interact")
+    public RestBean<Void> interact(@RequestParam @Min(0) int tid,
+                                   @RequestParam @Pattern(regexp = "(like|collect)") String type,
+                                   @RequestParam boolean state,
+                                   @RequestAttribute("id") int id) {
+        topic.interact(new Interact(tid, id, new Date(), type), state);
+        return RestBean.success(null);
+    }
+
+    @GetMapping("/collects")
+    public RestBean<List<TopicPreviewVO>> collect(@RequestAttribute("id") int id) {
+        return RestBean.success(topic.listTopicCollects(id),null);
     }
 }

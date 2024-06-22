@@ -9,6 +9,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class TopicPreviewVO {
     Integer id;
     Integer type;
@@ -19,4 +20,6 @@ public class TopicPreviewVO {
     Integer uid;
     String username;
     String avatar;
+    int like;
+    int collect;
 }

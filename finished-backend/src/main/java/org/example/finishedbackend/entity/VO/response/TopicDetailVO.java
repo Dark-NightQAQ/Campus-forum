@@ -16,6 +16,14 @@ public class TopicDetailVO {
     Integer type;
     Date time;
     User user;
+    Interact interact;
+
+    @Data
+    @AllArgsConstructor
+    public static class Interact {
+        Boolean like;
+        Boolean collect;
+    }
 
     @Data
     public static class User {

@@ -19,9 +19,13 @@ import org.example.finishedbackend.utils.Const;
 import org.example.finishedbackend.utils.FlowUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,6 +45,9 @@ public class TopicServiceImpl extends ServiceImpl<TopicMapper, TopicDTO> impleme
 
     @Resource
     AccountPrivacyMapper privacyMapper;
+
+    @Resource
+    StringRedisTemplate template;
 
     // 预处理listTypes的Id;
     private Set<Integer> types = null;
@@ -91,6 +98,15 @@ public class TopicServiceImpl extends ServiceImpl<TopicMapper, TopicDTO> impleme
     }
 
     @Override
+    public List<TopicPreviewVO> listTopicCollects(int uid) {
+        return baseMapper.collectTopics(uid).stream().map(topic -> {
+            TopicPreviewVO vo = new TopicPreviewVO();
+            BeanUtils.copyProperties(topic, vo);
+            return vo;
+        }).toList();
+    }
+
+    @Override
     public List<TopicTopVO> listTopTopics() {
         List<TopicDTO> topics = baseMapper.selectList(Wrappers.<TopicDTO>query()
                 .select("id", "title", "time")
@@ -104,8 +120,56 @@ public class TopicServiceImpl extends ServiceImpl<TopicMapper, TopicDTO> impleme
         TopicDTO dto = baseMapper.selectById(tid);
         BeanUtils.copyProperties(dto, vo);
         TopicDetailVO.User user = new TopicDetailVO.User();
+        TopicDetailVO.Interact interact = new TopicDetailVO.Interact(
+                hasInteract(tid, dto.getUid(), "like"),
+                hasInteract(tid, dto.getUid(), "collect"));
+        vo.setInteract(interact);
         vo.setUser(this.fillUserDetailsByPrivacy(user, dto.getUid()));
         return vo;
+    }
+
+    private boolean hasInteract(int tid, int uid, String type) {
+        String key = tid + ":" + uid;
+        if (template.opsForHash().hasKey(type, key))
+            return Boolean.parseBoolean(template.opsForHash().entries(type).get(key).toString());
+        return baseMapper.userInteractCount(tid, uid, type) > 0;
+    }
+
+    @Override
+    public void interact(Interact interact, boolean state) {
+        String type = interact.getType();
+        synchronized (type.intern()) {
+            template.opsForHash().put(type, interact.toKey(), Boolean.toString(state));
+            this.saveInteractSchedule(type);
+        }
+    }
+
+    private final Map<String, Boolean> map = new HashMap<>();
+    ScheduledExecutorService service = Executors.newScheduledThreadPool(2);
+    private void saveInteractSchedule(String type) {
+        if (!map.getOrDefault(type, false)) {
+            map.put(type, true);
+            service.schedule(() -> {
+                this.saveInteract(type);
+                map.put(type, false);
+            }, 3, TimeUnit.SECONDS);
+        }
+    }
+
+    private void saveInteract(String type) {
+        synchronized (type.intern()) {
+            List<Interact> check = new LinkedList<>();
+            List<Interact> uncheck = new LinkedList<>();
+            template.opsForHash().entries(type).forEach((k, v) -> {
+                if (Boolean.parseBoolean(v.toString()))
+                    check.add(Interact.parseInteract(k.toString(), type));
+                else
+                    uncheck.add(Interact.parseInteract(k.toString(), type));
+            });
+            if (!check.isEmpty()) baseMapper.addInteract(check, type);
+            if (!uncheck.isEmpty()) baseMapper.deleteInteract(uncheck, type);
+            template.delete(type);
+        }
     }
 
     private <T> T fillUserDetailsByPrivacy(T target, int uid) {
@@ -120,7 +184,9 @@ public class TopicServiceImpl extends ServiceImpl<TopicMapper, TopicDTO> impleme
 
     private TopicPreviewVO resolveToPreview(TopicDTO dto) {
         AccountDTO account = accountMapper.selectById(dto.getUid());
-        TopicPreviewVO vo = new TopicPreviewVO(dto.getId(), dto.getType(), dto.getTitle(), null, null, dto.getTime(), dto.getUid(), account.getUsername(), account.getAvatar());
+        TopicPreviewVO vo = new TopicPreviewVO(dto.getId(), dto.getType(), dto.getTitle(), null, null, dto.getTime(), dto.getUid(), account.getUsername(), account.getAvatar(),
+                baseMapper.interactCount(dto.getId(), "like"),
+                baseMapper.interactCount(dto.getId(), "collect"));
         List<String> images = new LinkedList<>();
         StringBuilder previewText = new StringBuilder();
         JSONArray ops = JSONObject.parseObject(dto.getContent()).getJSONArray("ops");
