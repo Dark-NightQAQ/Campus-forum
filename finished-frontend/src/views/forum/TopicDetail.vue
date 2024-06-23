@@ -184,7 +184,7 @@ function deleteComment(id) {
                            :size="60"/>
                 <div>
                   <div style="font-size: 18px;font-weight: bold">
-                    {{topic.data.user.username}}
+                    {{item.user.username}}
                     <span style="color: hotpink" v-if="item.user.gender === 1">
               <el-icon><Female/></el-icon>
             </span>
@@ -196,14 +196,14 @@ function deleteComment(id) {
             </span>
                   </div>
                   <div class="desc" v-if="item.user.email">{{item.user.email}}</div>
-                  <div class="desc" v-else>该用户隐藏了邮箱</div>
+                  <div class="desc" v-else>该用户隐藏或没填写邮箱</div>
                 </div>
                 <el-divider style="margin: 10px 0"/>
                 <div style="text-align: left;margin: 0 5px">
                   <div class="desc" v-if="item.user.phone">手机号:{{item.user.phone}}</div>
-                  <div class="desc" v-else>该用户隐藏了手机号</div>
+                  <div class="desc" v-else>该用户隐藏或没填写手机号</div>
                   <div class="desc" v-if="item.user.qq">QQ号:{{item.user.qq}}</div>
-                  <div class="desc" v-else>该用户隐藏了QQ号</div>
+                  <div class="desc" v-else>该用户隐藏或没填写QQ号</div>
                 </div>
               </div>
               <div class="topic-main-right">

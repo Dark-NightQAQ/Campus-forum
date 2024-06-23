@@ -8,15 +8,16 @@ import {
   Bell,
   ChatDotSquare, Check, Collection, DataLine,
   Document, Files,
-  Location, Lock, Message, Monitor, Notification, Operation,
+  Location, Lock, Message, Monitor, Moon, Notification, Operation,
   Position,
-  School, Search,
+  School, Search, Sunny,
   Umbrella, User
 } from "@element-plus/icons-vue";
 import router from "@/router/index.js";
 import axios from "axios";
 import LightCard from "@/components/LightCard.vue";
 import {ElMessage} from "element-plus";
+import {useDark} from "@vueuse/core";
 
 const store = useCounterStore()
 const loading = ref(true);
@@ -55,8 +56,10 @@ function deleteAllNotification() {
 }
 
 const getAvatar = computed(() => {
-  return store.user.avatar.length > 0 ? `${axios.defaults.baseURL}/images${store.user.avatar}` : "https://www.vexipui.com/qmhc.jpg";
+  return store.user.avatar ? `${axios.defaults.baseURL}/images${store.user.avatar}` : "https://www.vexipui.com/qmhc.jpg";
 });
+
+const dark = ref(useDark())
 </script>
 
 <template>
@@ -80,6 +83,9 @@ const getAvatar = computed(() => {
           </el-input>
         </div>
         <div class="user-info">
+          <el-switch
+              style="--el-switch-on-color: #424242;margin-right: 30px;"
+              v-model="dark" :active-action-icon="Moon" :inactive-action-icon="Sunny"/>
           <el-popover placement="bottom" :width="350" trigger="click">
             <template #reference>
               <el-badge style="margin-right: 15px" is-dot :hidden="!notification.length">

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import {isLogin} from "@/net/api.js";
+import {getToken, isLogin} from "@/net/api.js";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -62,7 +62,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const loginStatus = isLogin();
+  const loginStatus = getToken()
   if (to.name.startsWith("welcome-") && loginStatus) {
     next("/index")
   } else if (to.name.startsWith("index") && !loginStatus) {

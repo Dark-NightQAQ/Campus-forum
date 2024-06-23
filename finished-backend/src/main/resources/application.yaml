@@ -1,6 +1,6 @@
 spring:
   minio:
-    endpoint: "http://localhost:9000"
+    endpoint: "http://192.168.5.1:9000"
     username: "minioadmin"
     password: "minioadmin"
   datasource:

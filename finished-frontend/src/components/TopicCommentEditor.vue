@@ -86,4 +86,23 @@ function deltaToText(delta) {
 :deep(.el-drawer__body) {
   padding: 10px;
 }
+
+:deep(.ql-toolbar) {
+  border-radius: 5px 5px 0 0;
+  border-color: var(--el-border-color) !important;
+}
+
+:deep(.ql-container) {
+  border-radius: 0 0 5px 5px;
+  border-color: var(--el-border-color) !important;
+}
+
+:deep(.ql-editor) {
+  font-size: 14px;
+}
+
+:deep(.ql-editor.ql-blank::before) {
+  color: var(--el-text-color-placeholder) !important;
+  font-style: normal !important;
+}
 </style>

@@ -117,8 +117,9 @@ public class TopicServiceImpl extends ServiceImpl<TopicMapper, TopicDTO> impleme
         AccountDTO accountDTO = accountMapper.selectById(uid);
         if (vo.getQuote() > 0) {
             TopicCommentDTO commentDTO = commentMapper.selectById(vo.getQuote());
-            if (Objects.equals(accountDTO.getId(), commentDTO.getUid())) {
-                notificationService.addNotification(commentDTO.getUid(), "您有新的帖子评论回复", accountDTO.getUsername()+"回复了你发表的评论", "success", "/index/topic-detail/"+commentDTO.getTid());
+            System.out.println(topicDTO.getUid()+","+accountDTO.getId()+","+commentDTO.getUid());
+            if (!Objects.equals(accountDTO.getId(), commentDTO.getUid())) {
+                notificationService.addNotification(commentDTO.getUid(), "您有新的评论回复", accountDTO.getUsername()+"回复了你发表的评论", "success", "/index/topic-detail/"+commentDTO.getTid());
             }
         } else if (!Objects.equals(accountDTO.getId(), topicDTO.getUid())) {
             notificationService.addNotification(topicDTO.getUid(), "您有新的帖子评论回复", accountDTO.getUsername()+"回复了你发表的主题:"+topicDTO.getTitle(), "success", "/index/topic-detail/"+topicDTO.getId());
@@ -160,7 +161,7 @@ public class TopicServiceImpl extends ServiceImpl<TopicMapper, TopicDTO> impleme
         String key = Const.FORUM_TOPIC_PREVIEW_CACHE + pageNumber + ":" + type;
         List<TopicPreviewVO> voList = cacheUtils.getListFromCache(key, TopicPreviewVO.class);
         if (voList != null) return voList;
-        Page<TopicDTO> page = Page.of(pageNumber + 1, 5);
+        Page<TopicDTO> page = Page.of(pageNumber + 1, 10);
         if (type == 0) {
             baseMapper.selectPage(page, Wrappers.<TopicDTO>query().orderByDesc("time"));
         } else {

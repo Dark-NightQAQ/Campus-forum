@@ -2,7 +2,7 @@ import axios from "axios";
 import {ElMessage} from "element-plus";
 import router from "@/router/index.js";
 
-const defaultUrl = "http://localhost:8080"
+const defaultUrl = "http://192.168.5.1:8080"
 
 const tokenAndExpire = "tokenAndExpire"
 
