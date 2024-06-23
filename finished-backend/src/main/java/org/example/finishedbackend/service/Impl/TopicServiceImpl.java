@@ -16,6 +16,7 @@ import org.example.finishedbackend.entity.VO.response.TopicDetailVO;
 import org.example.finishedbackend.entity.VO.response.TopicPreviewVO;
 import org.example.finishedbackend.entity.VO.response.TopicTopVO;
 import org.example.finishedbackend.mapper.*;
+import org.example.finishedbackend.service.NotificationService;
 import org.example.finishedbackend.service.TopicService;
 import org.example.finishedbackend.utils.CacheUtils;
 import org.example.finishedbackend.utils.Const;
@@ -52,6 +53,9 @@ public class TopicServiceImpl extends ServiceImpl<TopicMapper, TopicDTO> impleme
 
     @Resource
     TopicCommentMapper commentMapper;
+
+    @Resource
+    NotificationService notificationService;
 
     @Resource
     StringRedisTemplate template;
@@ -109,6 +113,16 @@ public class TopicServiceImpl extends ServiceImpl<TopicMapper, TopicDTO> impleme
         BeanUtils.copyProperties(vo, dto);
         dto.setTime(new Date());
         commentMapper.insert(dto);
+        TopicDTO topicDTO = baseMapper.selectById(vo.getTid());
+        AccountDTO accountDTO = accountMapper.selectById(uid);
+        if (vo.getQuote() > 0) {
+            TopicCommentDTO commentDTO = commentMapper.selectById(vo.getQuote());
+            if (Objects.equals(accountDTO.getId(), commentDTO.getUid())) {
+                notificationService.addNotification(commentDTO.getUid(), "您有新的帖子评论回复", accountDTO.getUsername()+"回复了你发表的评论", "success", "/index/topic-detail/"+commentDTO.getTid());
+            }
+        } else if (!Objects.equals(accountDTO.getId(), topicDTO.getUid())) {
+            notificationService.addNotification(topicDTO.getUid(), "您有新的帖子评论回复", accountDTO.getUsername()+"回复了你发表的主题:"+topicDTO.getTitle(), "success", "/index/topic-detail/"+topicDTO.getId());
+        }
         return null;
     }
 

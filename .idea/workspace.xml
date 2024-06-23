@@ -4,20 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9486f603-c05f-467a-a535-0a86d5d940c9" name="更改" comment="编辑帖子功能实现">
-      <change afterPath="$PROJECT_DIR$/finished-frontend/src/assets/css/quill.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="9486f603-c05f-467a-a535-0a86d5d940c9" name="更改" comment="增加帖子评论发布，删除，回复评论等功能。">
+      <change afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/controller/NotificationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/config/WebConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/config/WebConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/controller/ForumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/controller/ForumController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/VO/response/TopicDetailVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/entity/VO/response/TopicDetailVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/Impl/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/Impl/AccountServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/Impl/TopicServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/Impl/TopicServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/TopicService.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/service/TopicService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/utils/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/utils/Const.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-frontend/src/components/TopicEditor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/components/TopicEditor.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finished-frontend/src/views/forum/Forum.vue" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/views/forum/Forum.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/utils/CacheUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/finished-backend/src/main/java/org/example/finishedbackend/utils/CacheUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-frontend/src/stores/counter.js" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/stores/counter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finished-frontend/src/views/IndexView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/views/IndexView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finished-frontend/src/views/forum/TopicDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/views/forum/TopicDetail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finished-frontend/src/views/forum/TopicList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/finished-frontend/src/views/forum/TopicList.vue" afterDir="false" />
     </list>
@@ -31,9 +25,9 @@
       <list>
         <option value="Record" />
         <option value="JavaScript File" />
-        <option value="Interface" />
         <option value="Vue Composition API Component" />
         <option value="CSS File" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -223,7 +217,7 @@
       <workItem from="1718969820686" duration="6351000" />
       <workItem from="1719047738656" duration="6744000" />
       <workItem from="1719054572987" duration="16269000" />
-      <workItem from="1719125216946" duration="9677000" />
+      <workItem from="1719125216946" duration="15146000" />
     </task>
     <task id="LOCAL-00001" summary="初始化">
       <option name="closed" value="true" />
@@ -329,7 +323,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719071875197</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="增加帖子评论发布，删除，回复评论等功能。">
+      <option name="closed" value="true" />
+      <created>1719136431098</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1719136431098</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,7 +358,8 @@
     <MESSAGE value="帖子前端详细界面展示完成" />
     <MESSAGE value="帖子点赞功能前后端实现" />
     <MESSAGE value="编辑帖子功能实现" />
-    <option name="LAST_COMMIT_MESSAGE" value="编辑帖子功能实现" />
+    <MESSAGE value="增加帖子评论发布，删除，回复评论等功能。" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加帖子评论发布，删除，回复评论等功能。" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

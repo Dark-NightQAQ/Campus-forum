@@ -1,5 +1,6 @@
 import {reactive} from 'vue'
 import { defineStore } from 'pinia'
+import axios from "axios";
 
 export const useCounterStore = defineStore('counter', () => {
   const user = reactive({
@@ -20,6 +21,9 @@ export const useCounterStore = defineStore('counter', () => {
       }
     }
   }
+  const getAvatar = (avatar) => {
+    return avatar ? `${axios.defaults.baseURL}/images${avatar}` : "https://www.vexipui.com/qmhc.jpg";
+  };
 
-  return { user, forum, findTypeById }
+  return { user, forum, findTypeById, getAvatar}
 })

@@ -101,8 +101,6 @@ navigator.geolocation.getCurrentPosition((position) => {
   timeout: 10000,
   enableHighAccuracy: true
 })
-
-
 </script>
 
 <template>
@@ -138,7 +136,7 @@ navigator.geolocation.getCurrentPosition((position) => {
             <light-card v-for="item in topics.list" class="topic-card" @click="router.push('/index/topic-detail/'+item.id)">
               <div style="display: flex">
                 <div>
-                  <el-avatar :size="30" :src="`${axios.defaults.baseURL}/images${item.avatar}`" />
+                  <el-avatar :size="30" :src="store.getAvatar(item.avatar)" />
                 </div>
                 <div style="margin-left: 7px">
                   <div style="font-size: 13px;font-weight: bold">{{item.username}}</div>

@@ -6,10 +6,7 @@ import jakarta.annotation.Resource;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -28,7 +25,7 @@ public class CacheUtils {
     public <T> List<T> getListFromCache(String key, Class<T> itemType) {
         String s = template.opsForValue().get(key);
         if (s == null) return null;
-        return JSONArray.parseArray(s).toList(itemType);
+        return JSONArray.parseArray(s, itemType).stream().toList();
     }
 
     public <T> T getFromCache(String key, Class<T> itemType) {

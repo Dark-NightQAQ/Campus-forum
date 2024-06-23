@@ -124,7 +124,7 @@ function deleteComment(id) {
     </div>
     <div class="topic-main" v-if="topic.data">
       <div class="topic-main-left">
-        <el-avatar :src="axios.defaults.baseURL + '/images' + topic.data.user.avatar"
+        <el-avatar :src="store.getAvatar(topic.data.user.avatar)"
                    :size="60"/>
         <div>
           <div style="font-size: 18px;font-weight: bold">
@@ -135,7 +135,7 @@ function deleteComment(id) {
             <span style="color: dodgerblue" v-if="topic.data.user.gender === 0">
               <el-icon><Male/></el-icon>
             </span>
-            <span style="color: grey" v-if="!topic.data.user.gender">
+            <span style="color: grey" v-if="topic.data.user.gender === null">
               <el-icon><Hide/></el-icon>
             </span>
           </div>
@@ -180,7 +180,7 @@ function deleteComment(id) {
         <div v-if="topic.comments">
             <div class="topic-main" style="margin-top: 10px" v-for="item in topic.comments">
               <div class="topic-main-left">
-                <el-avatar :src="axios.defaults.baseURL + '/images' + item.user.avatar"
+                <el-avatar :src="store.getAvatar(item.user.avatar)"
                            :size="60"/>
                 <div>
                   <div style="font-size: 18px;font-weight: bold">
@@ -191,7 +191,7 @@ function deleteComment(id) {
                     <span style="color: dodgerblue" v-if="item.user.gender === 0">
               <el-icon><Male/></el-icon>
             </span>
-                    <span style="color: grey" v-if="!item.user.gender">
+                    <span style="color: grey" v-if="item.user.gender === null">
               <el-icon><Hide/></el-icon>
             </span>
                   </div>

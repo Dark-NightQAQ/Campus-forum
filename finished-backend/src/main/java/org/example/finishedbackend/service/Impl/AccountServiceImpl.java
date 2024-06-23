@@ -4,11 +4,15 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jakarta.annotation.Resource;
 import org.example.finishedbackend.entity.DTO.AccountDTO;
+import org.example.finishedbackend.entity.DTO.AccountDetailsDTO;
+import org.example.finishedbackend.entity.DTO.AccountPrivacyDTO;
 import org.example.finishedbackend.entity.VO.request.ModifyEmailVO;
 import org.example.finishedbackend.entity.VO.request.RegisterAccountByEmailVO;
 import org.example.finishedbackend.entity.VO.request.ResetAccountPasswordVO;
 import org.example.finishedbackend.entity.VO.request.changePasswordVO;
+import org.example.finishedbackend.mapper.AccountDetailsMapper;
 import org.example.finishedbackend.mapper.AccountMapper;
+import org.example.finishedbackend.mapper.AccountPrivacyMapper;
 import org.example.finishedbackend.service.AccountService;
 import org.example.finishedbackend.utils.Const;
 import org.example.finishedbackend.utils.FlowUtils;
@@ -43,6 +47,12 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, AccountDTO> i
 
     @Resource
     RabbitTemplate rabbitTemplate;
+
+    @Resource
+    AccountPrivacyMapper privacyMapper;
+
+    @Resource
+    AccountDetailsMapper detailsMapper;
 
     @Resource
     BCryptPasswordEncoder encoder;
@@ -135,6 +145,11 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, AccountDTO> i
         if (existsAccountByUsername(username)) return "该用户名已被使用";
         AccountDTO dto = new AccountDTO(0, vo.getUsername(), encoder.encode(vo.getPassword()), null, email, "user", new Date());
         if (this.baseMapper.insert(dto) > 0) {
+            stringRedisTemplate.delete(Const.VERIFY_EMAIL_CODE + email);
+            privacyMapper.insert(new AccountPrivacyDTO(dto.getId()));
+            AccountDetailsDTO detailsDTO = new AccountDetailsDTO();
+            detailsDTO.setId(dto.getId());
+            detailsMapper.insert(detailsDTO);
             return null;
         } else {
             return "错误代码: r001, 请截图联系管理员或稍后重试";
