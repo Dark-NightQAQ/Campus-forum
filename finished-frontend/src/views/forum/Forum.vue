@@ -13,11 +13,14 @@ get("/api/forum/types", data => {
 </script>
 
 <template>
-  <router-view v-slot="{ Component }">
-    <transition name="el-fade-in-linear">
-      <keep-alive include="TopicList">
-        <component :is="Component" style="height: 100%"/>
-      </keep-alive>
-    </transition>
-  </router-view>
+  <div>
+    <router-view v-slot="{ Component }">
+      <transition name="el-fade-in-linear">
+        <keep-alive include="TopicList">
+          <component :is="Component" style="height: 100%"/>
+        </keep-alive>
+      </transition>
+    </router-view>
+    <el-backtop target=".main-content-page .el-scrollbar__wrap" :right="20" :bottom="70" />
+  </div>
 </template>

@@ -185,7 +185,7 @@ navigator.geolocation.getCurrentPosition((position) => {
           </div>
           <el-divider style="margin: 10px 0"/>
           <div style="font-size: 14px;color: grey;margin: 10px">
-            可惜你不玩原神可惜你不玩原神可惜你不玩原神可惜你不玩原神可惜你不玩原神可惜你不玩原神可惜你不玩原神可惜你不玩原神可惜你不玩原神可惜你不玩原神
+            各位在发帖的时候请注意设置图片大小,建议设置宽度为500px,否则页面展示会过大。
           </div>
         </light-card>
         <light-card style="margin-top: 10px">

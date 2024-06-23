@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Pattern;
 import org.example.finishedbackend.entity.DTO.Interact;
 import org.example.finishedbackend.entity.DTO.TopicDTO;
 import org.example.finishedbackend.entity.RestBean;
+import org.example.finishedbackend.entity.VO.request.AddCommentVO;
 import org.example.finishedbackend.entity.VO.request.TopicCreateVO;
 import org.example.finishedbackend.entity.VO.request.TopicUpdateVO;
 import org.example.finishedbackend.entity.VO.response.*;
@@ -85,5 +86,25 @@ public class ForumController {
                                       @RequestBody @Valid TopicUpdateVO vo) {
         String s = topic.updateTopic(id, vo);
         return s == null ? RestBean.success("帖子更新成功") : RestBean.failure(400, s);
+    }
+
+    @PostMapping("/add-comment")
+    public RestBean<Void> addComment(@RequestAttribute("id") int id,
+                                     @RequestBody @Valid AddCommentVO vo) {
+        String s = topic.createComment(id, vo);
+        return s == null ? RestBean.success(null) : RestBean.failure(400, s);
+    }
+
+    @GetMapping("/comments")
+    public RestBean<List<CommentVO>> comments(@RequestParam @Min(0) int tid,
+                                              @RequestParam @Min(0) int page) {
+        return RestBean.success(topic.comments(tid, page), null);
+    }
+
+    @GetMapping("/delete-comment")
+    public RestBean<Void> deleteComment(@RequestParam @Min(1) int id,
+                                        @RequestAttribute("id") int uid) {
+        topic.deleteComment(uid, id);
+        return RestBean.success(null);
     }
 }

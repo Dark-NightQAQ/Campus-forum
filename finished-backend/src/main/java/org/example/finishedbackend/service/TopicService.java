@@ -6,8 +6,10 @@ import jakarta.validation.constraints.Pattern;
 import org.example.finishedbackend.entity.DTO.Interact;
 import org.example.finishedbackend.entity.DTO.TopicDTO;
 import org.example.finishedbackend.entity.DTO.TopicTypeDTO;
+import org.example.finishedbackend.entity.VO.request.AddCommentVO;
 import org.example.finishedbackend.entity.VO.request.TopicCreateVO;
 import org.example.finishedbackend.entity.VO.request.TopicUpdateVO;
+import org.example.finishedbackend.entity.VO.response.CommentVO;
 import org.example.finishedbackend.entity.VO.response.TopicDetailVO;
 import org.example.finishedbackend.entity.VO.response.TopicPreviewVO;
 import org.example.finishedbackend.entity.VO.response.TopicTopVO;
@@ -25,4 +27,7 @@ public interface TopicService extends IService<TopicDTO> {
     void interact(Interact interact, boolean state);
     List<TopicPreviewVO> listTopicCollects(int uid);
     String updateTopic(int uid, TopicUpdateVO vo);
+    String createComment(int uid, AddCommentVO vo);
+    List<CommentVO> comments(int tid, int page);
+    void deleteComment(int uid, int id);
 }
